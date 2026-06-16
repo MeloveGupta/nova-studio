@@ -1,13 +1,9 @@
-import clientPromise from "@/lib/mongodb";
+import pool from "@/lib/db";
 import { isValidSession } from "@/lib/auth";
 
 const allowedTypes = ["page_visit", "cta_click"];
 
 export default async function handler(req, res) {
-  const client = await clientPromise;
-  const db = client.db("novastudio");
-  const events = db.collection("events");
-
   if (req.method === "POST") {
     const { type, page } = req.body;
 
@@ -16,11 +12,10 @@ export default async function handler(req, res) {
     }
 
     try {
-      await events.insertOne({
-        type,
-        page: page || "/",
-        createdAt: new Date(),
-      });
+      await pool.query(
+        "INSERT INTO events (type, page) VALUES ($1, $2)",
+        [type, page || "/"]
+      );
       return res.status(201).json({ message: "Event logged" });
     } catch (err) {
       console.error("Failed to log analytics event:", err);
@@ -35,10 +30,17 @@ export default async function handler(req, res) {
     }
 
     try {
-      const pageVisits = await events.countDocuments({ type: "page_visit" });
-      const ctaClicks = await events.countDocuments({ type: "cta_click" });
+      const pageVisits = await pool.query(
+        "SELECT COUNT(*) FROM events WHERE type = 'page_visit'"
+      );
+      const ctaClicks = await pool.query(
+        "SELECT COUNT(*) FROM events WHERE type = 'cta_click'"
+      );
 
-      return res.status(200).json({ pageVisits, ctaClicks });
+      return res.status(200).json({
+        pageVisits: parseInt(pageVisits.rows[0].count),
+        ctaClicks: parseInt(ctaClicks.rows[0].count),
+      });
     } catch (err) {
       console.error("Failed to fetch analytics:", err);
       return res.status(500).json({ message: "Failed to fetch analytics" });

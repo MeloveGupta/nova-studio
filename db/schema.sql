@@ -21,3 +21,10 @@ INSERT INTO projects (title, category, image) VALUES
   ('SaaS Dashboard UI', 'Front-End Development', '/images/project4.jpg'),
   ('Restaurant Website', 'Web Design', '/images/project5.jpg'),
   ('Startup Logo Design', 'Branding', '/images/project6.jpg');
+
+CREATE TABLE IF NOT EXISTS events (
+  id SERIAL PRIMARY KEY,
+  type VARCHAR(50) NOT NULL,
+  page VARCHAR(255) DEFAULT '/',
+  created_at TIMESTAMP DEFAULT NOW()
+);
