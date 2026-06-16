@@ -1,22 +1,28 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { useEffect } from "react";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import Portfolio from "@/components/Portfolio";
+import Stats from "@/components/Stats";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
+  useEffect(() => {
+    fetch("/api/analytics", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type: "page_visit", page: "/" }),
+    }).catch((err) => console.error("Failed to log page visit:", err));
+  }, []);
+
   return (
     <>
-      <h1>Nova Studio</h1>
+      <Navbar />
+      <Hero />
+      <Services />
+      <Portfolio />
+      <Stats />
+      <ContactForm />
     </>
   );
 }
