@@ -101,7 +101,7 @@ Admin panel is on [http://localhost:3000/admin](http://localhost:3000/admin)
 
 ## Deployment
 
-Deployed on Vercel.
+Deployed on Vercel: https://nova-studio-assignment.vercel.app
 
 ## Admin Panel Access
 
