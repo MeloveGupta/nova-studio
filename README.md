@@ -103,8 +103,6 @@ Admin panel is on [http://localhost:3000/admin](http://localhost:3000/admin)
 
 Deployed on Vercel: https://nova-studio-assignment.vercel.app
 
-## Admin Panel Access
-
-The live admin panel is at: https://nova-studio-assignment.vercel.app/admin
+The live admin panel link for testing purpose: https://nova-studio-assignment.vercel.app/admin
 Username: admin
 Password: admin123
