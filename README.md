@@ -20,6 +20,10 @@ This is my submission for the Nova Studio fullstack developer assignment. Its a 
 - Tracks page visits and CTA button clicks in MongoDB
 - Scroll animations and count up animation for stats
 
+## Note on MongoDB
+
+The original plan was to use MongoDB Atlas for analytics/logs as a secondary database. I set it up and it worked fine locally but ran into a TLS/SSL handshake error when deployed on Vercel, MongoDB Atlas M0 free tier has a compatibility issue with the OpenSSL version that Vercel's Node.js runtime uses and Vercel no longer supports Node 18 which would have fixed it. So I moved analytics to Postgres instead since it was already working. The schema and API structure is the same, just using a different database.
+
 ## Folder Structure
 
 nova-studio/
