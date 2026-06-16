@@ -175,7 +175,6 @@ export default function AdminDashboard() {
       </AppBar>
 
       <Container maxWidth="lg" sx={{ py: 4 }}>
-        {/* Analytics Overview */}
         <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
           Analytics Overview
         </Typography>
@@ -213,7 +212,6 @@ export default function AdminDashboard() {
           </Box>
         )}
 
-        {/* Contact Submissions */}
         <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
           Contact Submissions
         </Typography>
@@ -253,7 +251,6 @@ export default function AdminDashboard() {
           </TableContainer>
         )}
 
-        {/* Manage Projects */}
         <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
           Manage Projects
         </Typography>
