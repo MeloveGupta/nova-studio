@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     );
     res.status(200).json(result.rows);
   } catch (err) {
-    console.error("Failed to fetch contacts:", err);
+    console.error("db error", err);
     res.status(500).json({ message: "Failed to fetch contacts" });
   }
 }

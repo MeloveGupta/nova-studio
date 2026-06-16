@@ -9,8 +9,8 @@ export default async function handler(req, res) {
       );
       return res.status(200).json(result.rows);
     } catch (err) {
-      console.error("Failed to fetch projects:", err);
-      return res.status(500).json({ message: "Failed to fetch projects" });
+      console.error(err);
+      return res.status(500).json({ message: "Something went wrong" });
     }
   }
 
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       );
       return res.status(201).json(result.rows[0]);
     } catch (err) {
-      console.error("Failed to add project:", err);
+      console.error("add project error:", err.message);
       return res.status(500).json({ message: "Failed to add project" });
     }
   }

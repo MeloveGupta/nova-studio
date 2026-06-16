@@ -18,7 +18,6 @@ export default async function handler(req, res) {
       );
       return res.status(201).json({ message: "Event logged" });
     } catch (err) {
-      console.error("Failed to log analytics event:", err);
       return res.status(500).json({ message: "Failed to log event" });
     }
   }
@@ -42,7 +41,7 @@ export default async function handler(req, res) {
         ctaClicks: parseInt(ctaClicks.rows[0].count),
       });
     } catch (err) {
-      console.error("Failed to fetch analytics:", err);
+      console.error("analytics query error:", err);
       return res.status(500).json({ message: "Failed to fetch analytics" });
     }
   }

@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     );
     res.status(201).json({ message: "Message sent successfully" });
   } catch (err) {
-    console.error("Failed to save contact submission:", err);
+    console.error("contact insert failed:", err);
     res.status(500).json({ message: "Something went wrong. Please try again." });
   }
 }
